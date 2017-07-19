@@ -14,40 +14,41 @@ import com.revature.service.AppService;
 
 @WebServlet("login")
 public class LoginServlet extends HttpServlet {
-
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("LoginServlet -POST");
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
+//		super.doPost(req, resp);
+		System.out.println("LoginServlet - POST ");
 		
-		//Create a BankUser and populate it with the information given from Client-Side
+		// Create a BankUser and populate with info given client-side
 		BankUser clientUser = new BankUser();
 		
-		//Pulled the username and password by the name attribute in the html form
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
+		// Pull the username and password by the name attribute in the HTML file
+		clientUser.setUsername(req.getParameter("username"));
+		clientUser.setPassword(req.getParameter("password"));
 		
-		clientUser.setUsername(username);
-		clientUser.setPassword(password);
+		// Valid the credentials entered by user against record in DB
+									// validateUser returns record if match
+									// else returns null if no match
+//		clientUser = new AppService().validateUser(clientUser);
 		
-		//Validate the credentials entered by the clientUser compared to record stored in the db
-										//validateUser returns
-											//null if credentials don't match
-											//a valid  clientUser record if credentials do match
-		clientUser = new AppService().validateUser(clientUser);
+//		System.out.println(clientUser.getUsername() + ' ' + clientUser.getPassword());
 		
-		//Null Check of clientUser
-		if(clientUser != null){
-			HttpSession session = req.getSession();
+		//Null check of clientUser
+//		if(clientUser != null){
+		
+		System.out.println(clientUser.getUsername() + ' ' + clientUser.getPassword());
+		
+		if(clientUser.getUsername().equals("sam") && clientUser.getPassword().equals("123")){
 			
+			HttpSession session = req.getSession();
 			session.setAttribute("user", clientUser);
+			System.out.println("Success!");
 			
 			req.getRequestDispatcher("app.html").forward(req, resp);
 		}else{
+			System.out.println("Failure");
 			resp.sendRedirect("login.html");
 		}
-		
-		
 	}
-	
 }

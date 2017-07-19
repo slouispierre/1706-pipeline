@@ -1,7 +1,7 @@
 package com.revature.model;
 
 public class BankTx {
-
+	
 	private String txType;
 	private double txAmount;
 	
@@ -42,7 +42,4 @@ public class BankTx {
 	}
 
 
-	
-	
-	
 }

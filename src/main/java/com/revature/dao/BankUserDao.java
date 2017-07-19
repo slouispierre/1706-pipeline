@@ -3,24 +3,15 @@ package com.revature.dao;
 import com.revature.model.BankUser;
 
 public interface BankUserDao {
-
 	/*
-	 * 	CRUD ops only
+	 * CRUD ops ONLY
+	 * CREATE
+	 * READ
+	 * UPDATE
+	 * DELETE
 	 * 
 	 */
-	
-	
-	//create
-	
-	
-	
-	//read
+
 	public BankUser getBankUserByUsername(BankUser user);
-	
-	//update
-	
-	
-	//delete
-	
-	
+
 }
